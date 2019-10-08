@@ -14,6 +14,8 @@ import MovingObject from '../../views/moving-object/MovingObject'
 const MOVING_AREA_WIDTH = window.innerWidth/2;
 const MOVING_AREA_HEIGHT = window.innerHeight;
 const MOVING_DELTA = 40;
+const RIGHT_BORDER_DELTA =  MOVING_AREA_WIDTH - 82;
+const BOTTOM_BORDER_DELTA = MOVING_AREA_HEIGHT - 80;
 
 export default {
     name: "scene",
@@ -45,9 +47,9 @@ export default {
                     });
                  }
                  if(this.currentDirection === 'right') {
-                     newLeft = this.movingObjectPosition.left + MOVING_DELTA < MOVING_AREA_WIDTH - 82 ?
+                     newLeft = this.movingObjectPosition.left + MOVING_DELTA < RIGHT_BORDER_DELTA ?
                          this.movingObjectPosition.left + MOVING_DELTA :
-                         MOVING_AREA_WIDTH - 82;
+                         RIGHT_BORDER_DELTA;
                      this.setDisabledDirections({
                         right: this.isRightDirectionDisabled(newLeft),
                         left: false
@@ -70,9 +72,9 @@ export default {
                     });
                 }
                 if(this.currentDirection === 'down') {
-                    newTop = this.movingObjectPosition.top + MOVING_DELTA < MOVING_AREA_HEIGHT - 80 ?
+                    newTop = this.movingObjectPosition.top + MOVING_DELTA < BOTTOM_BORDER_DELTA ?
                         this.movingObjectPosition.top + MOVING_DELTA :
-                        MOVING_AREA_HEIGHT - 80;
+                        BOTTOM_BORDER_DELTA;
                     this.setDisabledDirections({
                         down: this.isDownDirectionDisabled(newTop),
                         up: false
@@ -89,10 +91,10 @@ export default {
             return newDirection === 0 ? true : false;
         },
         isRightDirectionDisabled(newRight) {
-            return newRight === MOVING_AREA_WIDTH - 82 ? true : false;
+            return newRight === RIGHT_BORDER_DELTA ? true : false;
         },
         isDownDirectionDisabled(newDown) {
-            return newDown === MOVING_AREA_HEIGHT - 80 ? true : false;
+            return newDown === BOTTOM_BORDER_DELTA ? true : false;
         }
     }
 }
