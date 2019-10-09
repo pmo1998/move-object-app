@@ -57,7 +57,7 @@ $key_view_right: '\2192';
 $key_view_down: '\2193';
 $key_view_up: '\2191';
 
-.key-view {
+@mixin keyView($content) {
     width: $key_view_size;
     height: $key_view_size;
     position: relative;
@@ -79,6 +79,7 @@ $key_view_up: '\2191';
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 30px;
+        content: $content;
     }
 
     &:disabled {
@@ -87,31 +88,19 @@ $key_view_up: '\2191';
 }
 
 .key-view_left {
-    @extend .key-view;
-    &:before {
-        content: $key_view_left;
-    }
+    @include keyView($key_view_left);
 }
 
 .key-view_right {
-    @extend .key-view;
-    &:before {
-        content: $key_view_right;
-    }
+    @include keyView($key_view_right);
 }
 
 .key-view_down {
-    @extend .key-view;
-    &:before {
-        content: $key_view_down;
-    }
+    @include keyView($key_view_down);
 }
 
 .key-view_up {
-    @extend .key-view;
-    &:before {
-        content: $key_view_up;
-    }
+    @include keyView($key_view_up);
 }
 
 </style>
